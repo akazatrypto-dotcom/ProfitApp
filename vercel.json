@@ -10,8 +10,5 @@
       "source": "/(.*)",
       "destination": "/server.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
