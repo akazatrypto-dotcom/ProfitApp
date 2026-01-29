@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-content">
+            <div class="user-info">
+                <span id="userName">Full name</span>, Welcome to Profit App
+            </div>
+            
+            <div class="image-slider">
+                <div class="slide active" data-slide="0">
+                    <img src="https://raw.githubusercontent.com/akazatrypto-dotcom/Images1/refs/heads/main/%D8%A8%D8%AF%D9%88%D9%86%20%D8%A7%D8%B3%D9%85156_20260128132246.jpg" alt="Slide 1">
+                </div>
+                <div class="slide" data-slide="1">
+                    <div class="slide-text">Profit App is your helper in earning your first dollar from the Internet</div>
+                    <img src="https://raw.githubusercontent.com/akazatrypto-dotcom/Images1/refs/heads/main/%D8%A8%D8%AF%D9%88%D9%86%20%D8%A7%D8%B3%D9%85156_20260128132246.jpg" alt="Slide 2">
+                </div>
+                <div class="slide" data-slide="2">
+                    <div class="slide-text">What are you waiting for? Explore Profit App now</div>
+                    <img src="https://raw.githubusercontent.com/akazatrypto-dotcom/Images1/refs/heads/main/%D8%A8%D8%AF%D9%88%D9%86%20%D8%A7%D8%B3%D9%85156_20260128132246.jpg" alt="Slide 3">
+                    <button id="openAppBtn" class="open-btn hidden">Open</button>
+                </div>
+            </div>
+            
+            <div class="progress-bars">
+                <div class="progress-bar" data-bar="0">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-bar" data-bar="1">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-bar" data-bar="2">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="slide-controls">
+                <button id="prevBtn" class="control-btn">‹</button>
+                <button id="nextBtn" class="control-btn">›</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Notification Button -->
+            <button id="notificationBtn" class="notification-btn-floating">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+            </button>
+            <!-- Notifications Page -->
+            <div id="notificationsPage" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Notifications</h1>
+                </div>
+                
+                <div class="notifications-container">
+                    <div class="notifications-header">
+                        <h2>Recent Updates</h2>
+                        <button id="markAllReadBtn" class="mark-read-btn">Mark all as read</button>
+                    </div>
+                    <div class="notifications-list" id="notificationsList">
+                        <div class="notification-item unread">
+                            <div class="notification-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Welcome to Profit App!</h4>
+                                <p>Start your journey to earn your first dollar from the internet.</p>
+                                <span class="notification-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                </svg>
+                            </div>
+                            <div class="notification-content">
+                                <h4>New Platform Added</h4>
+                                <p>Check out the latest trading platform in our Wallets section.</p>
+                                <span class="notification-time">1 day ago</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Earning Opportunity</h4>
+                                <p>New earning methods available in the Earn section.</p>
+                                <span class="notification-time">3 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profilePage" class="page active">
+                <div class="page-header">
+                    <h1 class="page-title">Profile</h1>
+                </div>
+                
+                <div class="profile-section">
+                    <img id="userAvatar" src="https://raw.githubusercontent.com/akazatrypto-dotcom/Images1/refs/heads/main/%D8%A8%D8%AF%D9%88%D9%86%20%D8%A7%D8%B3%D9%85156_20260128132246.jpg" alt="Profile" class="profile-avatar">
+                    <div class="user-details">
+                        <div class="detail-item">
+                            <span class="label">Full Name:</span>
+                            <span id="fullName" class="value">John Doe</span>
+                            <button class="copy-btn" onclick="copyToClipboard('fullName')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Username:</span>
+                            <span id="username" class="value">@johndoe</span>
+                            <button class="copy-btn" onclick="copyToClipboard('username')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">User ID:</span>
+                            <span id="userId" class="value">123456789</span>
+                            <button class="copy-btn" onclick="copyToClipboard('userId')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wallets Page -->
+            <div id="walletsPage" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Wallets</h1>
+                </div>
+                
+                <div class="section">
+                    <h2>Exchange Platforms</h2>
+                    <div class="platform-item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/15208/15208359.png" alt="Binance" class="platform-icon">
+                        <div class="platform-info">
+                            <h3>Binance</h3>
+                        </div>
+                        <button class="info-btn" onclick="showPlatformInfo('binance')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9,9h6v6"></path>
+                                <path d="M9,15h6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Ton Wallets</h2>
+                    <div class="platform-item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/15208/15208359.png" alt="TON Wallet" class="platform-icon">
+                        <div class="platform-info">
+                            <h3>TON Wallet</h3>
+                        </div>
+                        <button class="info-btn" onclick="showPlatformInfo('ton')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9,9h6v6"></path>
+                                <path d="M9,15h6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Web3 Wallets</h2>
+                    <div class="platform-item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/15208/15208359.png" alt="MetaMask" class="platform-icon">
+                        <div class="platform-info">
+                            <h3>MetaMask</h3>
+                        </div>
+                        <button class="info-btn" onclick="showPlatformInfo('metamask')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9,9h6v6"></path>
+                                <path d="M9,15h6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earn Page -->
+            <div id="earnPage" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Earn</h1>
+                </div>
+                
+                <div class="section">
+                    <h2>Telegram Bots</h2>
+                    <div class="platform-item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/15208/15208359.png" alt="Bot" class="platform-icon">
+                        <div class="platform-info">
+                            <h3>Earning Bot</h3>
+                        </div>
+                        <button class="info-btn" onclick="showPlatformInfo('bot')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9,9h6v6"></path>
+                                <path d="M9,15h6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Sites</h2>
+                    <div class="platform-item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/15208/15208359.png" alt="Site" class="platform-icon">
+                        <div class="platform-info">
+                            <h3>Earning Site</h3>
+                        </div>
+                        <button class="info-btn" onclick="showPlatformInfo('site')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9,9h6v6"></path>
+                                <path d="M9,15h6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Apps</h2>
+                    <div class="platform-item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/15208/15208359.png" alt="App" class="platform-icon">
+                        <div class="platform-info">
+                            <h3>Earning App</h3>
+                        </div>
+                        <button class="info-btn" onclick="showPlatformInfo('app')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9,9h6v6"></path>
+                                <path d="M9,15h6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settingsPage" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Settings</h1>
+                </div>
+                
+                <div class="settings-profile">
+                    <img id="settingsAvatar" src="https://raw.githubusercontent.com/akazatrypto-dotcom/Images1/refs/heads/main/%D8%A8%D8%AF%D9%88%D9%86%20%D8%A7%D8%B3%D9%85156_20260128132246.jpg" alt="Profile" class="settings-avatar">
+                    <span id="settingsName">John Doe</span>
+                </div>
+                
+                <div class="settings-options">
+                    <button class="setting-btn" onclick="showNotifications()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        Notifications
+                    </button>
+                    <button class="setting-btn" onclick="toggleDarkMode()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        Dark Mode
+                    </button>
+                    <button class="setting-btn" onclick="openLink('https://t.me/hamza_king_crypto')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        Developer
+                    </button>
+                    <button class="setting-btn" onclick="openLink('https://t.me/MoneyCatsPromoCode')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"></path>
+                        </svg>
+                        Our Channel
+                    </button>
+                    <button id="controlPanelBtn" class="setting-btn admin-only hidden">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        Control Panel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="profilePage">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="nav-label">Profile</span>
+            </button>
+            <button class="nav-btn" data-page="walletsPage">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <path d="M16 8h4a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-4"></path>
+                    <circle cx="9" cy="9" r="2"></circle>
+                </svg>
+                <span class="nav-label">Wallets</span>
+            </button>
+            <button class="nav-btn" data-page="earnPage">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+                <span class="nav-label">Earn</span>
+            </button>
+            <button class="nav-btn" data-page="settingsPage">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span class="nav-label">Settings</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Modal for Platform Info -->
+    <div id="platformModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">Platform Info</h3>
+            <p id="modalDescription">Platform description goes here...</p>
+            <button id="registerBtn" class="register-btn">Register</button>
+        </div>
+    </div>
+
+    <!-- Control Panel (Admin Only) -->
+    <div id="controlPanel" class="control-panel hidden">
+        <div class="panel-content">
+            <div class="panel-header">
+                <h2>Control Panel</h2>
+                <button onclick="closeControlPanel()" class="close-panel-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="panel-tabs">
+                <button class="tab-btn active" data-tab="notifications">Notifications</button>
+                <button class="tab-btn" data-tab="projects">Projects</button>
+                <button class="tab-btn" data-tab="manage">Manage</button>
+            </div>
+            
+            <!-- Notifications Tab -->
+            <div class="tab-content active" id="notificationsTab">
+                <div class="panel-section">
+                    <h3>Send Notification</h3>
+                    <div class="form-group">
+                        <label for="notificationText">Message</label>
+                        <textarea id="notificationText" placeholder="Enter notification message..." rows="4"></textarea>
+                    </div>
+                    <button onclick="sendNotification()" class="primary-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13"></path>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                        </svg>
+                        Send to All Users
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Projects Tab -->
+            <div class="tab-content" id="projectsTab">
+                <div class="panel-section">
+                    <h3>Add New Project</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="projectCategory">Category</label>
+                            <select id="projectCategory">
+                                <option value="">Select Category</option>
+                                <option value="wallets">Wallets</option>
+                                <option value="earn">Earn</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectSection">Section</label>
+                            <select id="projectSection" disabled>
+                                <option value="">Select Section</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectName">Project Name</label>
+                            <input type="text" id="projectName" placeholder="Enter project name">
+                        </div>
+                        <div class="form-group">
+                            <label for="projectImage">Image URL</label>
+                            <input type="url" id="projectImage" placeholder="https://example.com/image.png">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDescription">Description</label>
+                        <textarea id="projectDescription" placeholder="Enter project description..." rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectLink">Registration Link</label>
+                        <input type="url" id="projectLink" placeholder="https://example.com/register">
+                    </div>
+                    <button onclick="addProject()" class="primary-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Project
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Manage Tab -->
+            <div class="tab-content" id="manageTab">
+                <div class="panel-section">
+                    <h3>Manage Projects</h3>
+                    <div class="projects-list" id="projectsList">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
