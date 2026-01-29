@@ -1,15 +1,14 @@
 {
-  "version": 2,
   "functions": {
     "server.js": {
-      "runtime": "@vercel/node@18",
+      "runtime": "nodejs18.x",
       "maxDuration": 30
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/server.js"
+      "source": "/(.*)",
+      "destination": "/server.js"
     }
   ],
   "env": {
