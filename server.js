@@ -14,7 +14,14 @@ const WEB_APP_URL = process.env.WEB_APP_URL;
 
 /* Clients */
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-const bot = new TelegramBot(BOT_TOKEN);
+let bot;
+
+function getBot() {
+  if (!bot) {
+    bot = new TelegramBot(process.env.BOT_TOKEN);
+  }
+  return bot;
+}
 
 /* Middleware */
 app.use(express.json());
@@ -96,3 +103,4 @@ bot.onText(/\/start/, async msg => {
 
 /* ❌ لا app.listen */
 module.exports = app;
+
